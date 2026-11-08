@@ -91,6 +91,7 @@ export const WorkoutForm: React.FC<Props> = ({ onAdd, onUpdate, editingWorkout, 
             <option value="Kuvvet">Kuvvet</option>
             <option value="Hipertrofi">Hipertrofi</option>
             <option value="Kardiyo">Kardiyo</option>
+            <option value="Dayanıklılık">Dayanıklılık</option>
             <option value="Esneklik">Esneklik</option>
           </select>
         </div>

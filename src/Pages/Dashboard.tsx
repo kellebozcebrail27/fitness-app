@@ -5,36 +5,36 @@ import { WorkoutList } from '../Components/WorkoutList';
 import { Activity, Dumbbell, Flame, Droplets, Timer, Play, Pause, RotateCcw, Zap, Target, Download, Upload, FileText, Filter, BookOpen, PlusCircle } from 'lucide-react';
 
 // Kas Gruplarına Göre Örnek Hareketler Kütüphanesi
-const EXERCISE_LIBRARY: Record<string, { name: string; category: string; defaultWeight: number; sets: number; reps: number }[]> = {
+const EXERCISE_LIBRARY: Record<string, { name: string; category: Workout['category']; defaultWeight: number; sets: number; reps: number }[]> = {
   Göğüs: [
-    { name: 'Bench Press', category: 'kuvvet', defaultWeight: 60, sets: 4, reps: 10 },
-    { name: 'Incline Dumbbell Press', category: 'kuvvet', defaultWeight: 22, sets: 3, reps: 12 },
-    { name: 'Cable Crossover', category: 'kuvvet', defaultWeight: 15, sets: 3, reps: 15 },
-    { name: 'Chest Dip', category: 'kuvvet', defaultWeight: 0, sets: 3, reps: 10 },
+    { name: 'Bench Press', category: 'Kuvvet', defaultWeight: 60, sets: 4, reps: 10 },
+    { name: 'Incline Dumbbell Press', category: 'Kuvvet', defaultWeight: 22, sets: 3, reps: 12 },
+    { name: 'Cable Crossover', category: 'Kuvvet', defaultWeight: 15, sets: 3, reps: 15 },
+    { name: 'Chest Dip', category: 'Kuvvet', defaultWeight: 0, sets: 3, reps: 10 },
   ],
   Sırt: [
-    { name: 'Lat Pulldown', category: 'kuvvet', defaultWeight: 50, sets: 4, reps: 12 },
-    { name: 'Barbell Row', category: 'kuvvet', defaultWeight: 50, sets: 4, reps: 10 },
-    { name: 'Seated Cable Row', category: 'kuvvet', defaultWeight: 45, sets: 3, reps: 12 },
-    { name: 'Barfiks (Pull-up)', category: 'kuvvet', defaultWeight: 0, sets: 3, reps: 8 },
+    { name: 'Lat Pulldown', category: 'Kuvvet', defaultWeight: 50, sets: 4, reps: 12 },
+    { name: 'Barbell Row', category: 'Kuvvet', defaultWeight: 50, sets: 4, reps: 10 },
+    { name: 'Seated Cable Row', category: 'Kuvvet', defaultWeight: 45, sets: 3, reps: 12 },
+    { name: 'Barfiks (Pull-up)', category: 'Kuvvet', defaultWeight: 0, sets: 3, reps: 8 },
   ],
   Bacak: [
-    { name: 'Barbell Squat', category: 'kuvvet', defaultWeight: 70, sets: 4, reps: 8 },
-    { name: 'Leg Press', category: 'kuvvet', defaultWeight: 120, sets: 3, reps: 10 },
-    { name: 'Leg Extension', category: 'dayanıklılık', defaultWeight: 40, sets: 3, reps: 12 },
-    { name: 'Romanian Deadlift', category: 'kuvvet', defaultWeight: 60, sets: 3, reps: 10 },
+    { name: 'Barbell Squat', category: 'Kuvvet', defaultWeight: 70, sets: 4, reps: 8 },
+    { name: 'Leg Press', category: 'Kuvvet', defaultWeight: 120, sets: 3, reps: 10 },
+    { name: 'Leg Extension', category: 'Dayanıklılık', defaultWeight: 40, sets: 3, reps: 12 },
+    { name: 'Romanian Deadlift', category: 'Kuvvet', defaultWeight: 60, sets: 3, reps: 10 },
   ],
   Biceps: [
-    { name: 'Barbell Curl', category: 'kuvvet', defaultWeight: 25, sets: 3, reps: 12 },
-    { name: 'Dumbbell Hammer Curl', category: 'kuvvet', defaultWeight: 14, sets: 3, reps: 12 },
-    { name: 'Preacher Curl', category: 'kuvvet', defaultWeight: 20, sets: 3, reps: 10 },
-    { name: 'Incline Dumbbell Curl', category: 'kuvvet', defaultWeight: 12, sets: 3, reps: 12 },
+    { name: 'Barbell Curl', category: 'Kuvvet', defaultWeight: 25, sets: 3, reps: 12 },
+    { name: 'Dumbbell Hammer Curl', category: 'Kuvvet', defaultWeight: 14, sets: 3, reps: 12 },
+    { name: 'Preacher Curl', category: 'Kuvvet', defaultWeight: 20, sets: 3, reps: 10 },
+    { name: 'Incline Dumbbell Curl', category: 'Kuvvet', defaultWeight: 12, sets: 3, reps: 12 },
   ],
   Triceps: [
-    { name: 'Triceps Pushdown (Halat)', category: 'kuvvet', defaultWeight: 30, sets: 4, reps: 12 },
-    { name: 'Skull Crusher', category: 'kuvvet', defaultWeight: 25, sets: 3, reps: 10 },
-    { name: 'Dumbbell Overhead Extension', category: 'kuvvet', defaultWeight: 18, sets: 3, reps: 12 },
-    { name: 'Bench Dips', category: 'kuvvet', defaultWeight: 0, sets: 3, reps: 15 },
+    { name: 'Triceps Pushdown (Halat)', category: 'Kuvvet', defaultWeight: 30, sets: 4, reps: 12 },
+    { name: 'Skull Crusher', category: 'Kuvvet', defaultWeight: 25, sets: 3, reps: 10 },
+    { name: 'Dumbbell Overhead Extension', category: 'Kuvvet', defaultWeight: 18, sets: 3, reps: 12 },
+    { name: 'Bench Dips', category: 'Kuvvet', defaultWeight: 0, sets: 3, reps: 15 },
   ],
 };
 
@@ -89,10 +89,11 @@ export const Dashboard = () => {
     setWorkouts([newWorkout, ...workouts]);
   };
 
-  const handleAddFromLibrary = (item: { name: string; category: string; defaultWeight: number; sets: number; reps: number }) => {
+  const handleAddFromLibrary = (item: { name: string; category: Workout['category']; defaultWeight: number; sets: number; reps: number }) => {
     const newWorkout: Workout = {
       id: crypto.randomUUID(),
-      name: item.name,
+      title: item.name,
+      date: new Date().toLocaleDateString('tr-TR'),
       category: item.category,
       weight: item.defaultWeight,
       sets: item.sets,
