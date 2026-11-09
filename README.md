@@ -38,5 +38,5 @@ Bilgisayarınızda **Node.js** (LTS sürümü önerilir) yüklü olmalıdır. Ko
 ### 2. Projeyi Klonlayın veya İndirin
 Terminali açın ve projenin bulunduğu klasöre gidin (veya projeyi GitHub'dan bilgisayarınıza çekin):
 ```bash
-git clone 
-cd fitflow-pro
+git clone [https://github.com/kellebozcebrail27/fitness-app.git](https://github.com/kellebozcebrail27/fitness-app.git)
+cd fitness-app
